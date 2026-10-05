@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #07080d;
+  --surface: #0d0f17;
+  --surface-2: #121521;
+  --surface-3: #191d2c;
+  --foreground: #eceef5;
+  --muted: #9298ad;
+  --subtle: #636a82;
+  --border: #1f2335;
+  --border-strong: #2c3150;
+  --primary: #8b7bff;
+  --primary-strong: #a597ff;
+  --primary-foreground: #0b0a1a;
+  --accent: #3fd7c3;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #fb7185;
+  --ring: #a597ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--primary) 40%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--border) 55%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.glow {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 25%, transparent),
+    0 20px 80px -20px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #fff 10%, var(--primary-strong) 55%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  :root {
+    --background: #fff;
+    --surface: #fff;
+    --surface-2: #f6f7fb;
+    --surface-3: #eef0f6;
+    --foreground: #11131c;
+    --muted: #4b5168;
+    --subtle: #6b7189;
+    --border: #dfe2ec;
+    --border-strong: #c9cee0;
+    --primary: #5b4ae6;
+    --primary-strong: #4a3ad6;
+    --accent: #0f9f8c;
+    --success: #0f8a5f;
+    --warning: #b7791f;
+    --danger: #c53252;
+  }
+  html {
+    color-scheme: light;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-break {
+    break-inside: avoid;
+  }
+}
